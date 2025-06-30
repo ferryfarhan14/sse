@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Search Engine</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-search"></i>
+                <h1>Simple Search Engine</h1>
+            </div>
+            <nav class="nav">
+                <button id="adminBtn" class="nav-btn">
+                    <i class="fas fa-cog"></i>
+                    Admin
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Search Section -->
+        <main class="main">
+            <div class="search-section">
+                <div class="search-container">
+                    <form id="searchForm" class="search-form">
+                        <div class="search-input-container">
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                placeholder="Masukkan kata kunci pencarian..."
+                                autocomplete="off"
+                                required
+                            >
+                            <button type="submit" class="search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Search Results -->
+                <div id="searchResults" class="search-results hidden">
+                    <div class="results-header">
+                        <h2 id="resultsTitle">Hasil Pencarian</h2>
+                        <div id="resultsCount" class="results-count"></div>
+                    </div>
+                    <div id="resultsList" class="results-list"></div>
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="loading hidden">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Mencari...</span>
+                </div>
+
+                <!-- No Results -->
+                <div id="noResults" class="no-results hidden">
+                    <i class="fas fa-search"></i>
+                    <h3>Tidak ada hasil ditemukan</h3>
+                    <p>Coba gunakan kata kunci yang berbeda atau pastikan domain sudah diindeks.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Admin Panel Modal -->
+        <div id="adminModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Panel Admin</h2>
+                    <button id="closeModal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <!-- Add Domain Section -->
+                    <div class="admin-section">
+                        <h3><i class="fas fa-globe"></i> Kelola Domain</h3>
+                        <form id="addDomainForm" class="form">
+                            <div class="input-group">
+                                <input 
+                                    type="text" 
+                                    id="domainInput" 
+                                    placeholder="example.com"
+                                    required
+                                >
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i>
+                                    Tambah Domain
+                                </button>
+                            </div>
+                        </form>
+                        <div id="domainsList" class="domains-list"></div>
+                    </div>
+
+                    <!-- Crawl URLs Section -->
+                    <div class="admin-section">
+                        <h3><i class="fas fa-spider"></i> Crawl URLs</h3>
+                        <form id="crawlForm" class="form">
+                            <div class="input-group">
+                                <textarea 
+                                    id="urlsInput" 
+                                    placeholder="Masukkan URLs (satu per baris)&#10;https://example.com&#10;https://example.com/page1"
+                                    rows="4"
+                                    required
+                                ></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fas fa-download"></i>
+                                Mulai Crawling
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Statistics Section -->
+                    <div class="admin-section">
+                        <h3><i class="fas fa-chart-bar"></i> Statistik</h3>
+                        <div id="statsContainer" class="stats-container">
+                            <div class="stat-item">
+                                <div class="stat-number" id="totalPages">-</div>
+                                <div class="stat-label">Total Halaman</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="totalDomains">-</div>
+                                <div class="stat-label">Total Domain</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast" class="toast hidden">
+            <div class="toast-content">
+                <i class="toast-icon"></i>
+                <span class="toast-message"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
